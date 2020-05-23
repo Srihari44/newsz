@@ -1,0 +1,15 @@
+body{
+    font-family: 'Jost', sans-serif;
+    transition: all ease-in .5s;
+    background-color: #EDF2F4 !important;
+}
+.jumbotron{
+    margin-top: 20px;
+}
+.js-news-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 10px;
+}
