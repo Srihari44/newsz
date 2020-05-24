@@ -18,8 +18,8 @@
     <title>NewZ | Your one stop news platform</title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">NewsZ</a>
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+    <a class="navbar-brand" href="#home">NewsZ</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,22 +28,22 @@
       <ul class="navbar-nav mr-auto">
         
         <li class="nav-item">
-          <a class="nav-link" href="#">Business</a>
+          <a class="nav-link" href="#business">Business</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Entertainment</a>
+          <a class="nav-link" href="#entertainment">Entertainment</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Health</a>
+          <a class="nav-link" href="#health">Health</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Science</a>
+          <a class="nav-link" href="#science">Science</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sports</a>
+          <a class="nav-link" href="#sports">Sports</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Technology</a>
+          <a class="nav-link" href="#technology">Technology</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -52,18 +52,80 @@
       </form>
     </div>
   </nav>
+  <section id="home">
       <div class="jumbotron">
         <h1 class="display-4">Hi, This is <span>NewsZ</span></h1>
         <p class="lead"> One n Only News you ever need. Good bye Old news ! Here comes our NewsZ</p>
       </div>
       <h2  class="label">Your Top-headlines</h2>
-      <div class="js-headlines-container">
+      <div class="spinner-border" id="loader" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="js-con js-headlines-container">
       
       </div>
-      <h2  class="label">Everything else</h2>
-      <div class="js-othernews-container">
+
+      </section>
+      <hr class="my-4">
+      <section id="business">
+        <h2  class="label">Business</h2>
+        <div class="spinner-border" id="loader" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      <div class="js-con js-business-container">
       
       </div>
+    </section>
+    <hr class="my-4">
+      <section id="entertainment">
+        <h2  class="label">Entertainment</h2>
+        <div class="spinner-border" id="loader" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      <div class="js-con js-entertainment-container">
+      
+      </div>
+    </section>
+    <hr class="my-4">
+      <section id="js-health-container">
+        <h2  class="label">Health</h2>
+        <div class="spinner-border" id="loader" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      <div class="js-con js-health-container">
+      
+      </div>
+    </section>
+    <hr class="my-4">
+      <section id="science">
+        <h2  class="label">Science</h2>
+        <div class="spinner-border" id="loader" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      <div class="js-con js-science-container">
+      
+      </div>
+    </section>
+    <hr class="my-4">
+      <section id="sports">
+        <h2  class="label">Sports</h2>
+        <div class="spinner-border" id="loader" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      <div class="js-con js-sports-container">
+      
+      </div>
+    </section>
+    <hr class="my-4">
+      <section id="technology">
+        <h2  class="label">Technology</h2>
+        <div class="spinner-border" id="loader" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      <div class="js-con js-technology-container">
+      
+      </div>
+    </section>
 <script src="./assets/js/index.js"></script>
 </body>
 </html>

@@ -12,7 +12,12 @@ body{
 .label{
     padding: 20px;
 }
-.js-headlines-container{
+.spinner-border{
+    position: relative;
+    top: 25%;
+    left: 50%;
+}
+.js-con{
     display: flex;
     overflow-x: scroll;
     padding: 20px;
@@ -57,8 +62,9 @@ body{
     outline:#007bff;
 }
 @media only screen and (min-width: 560px) {
-    .js-headlines-container{
+    .js-con{
         display: flex;
+        overflow-x: hidden;
        justify-content: space-around;
        flex-wrap: wrap;
   }
