@@ -61,6 +61,17 @@ body{
 .navbar-toggler-icon:focus {
     outline:#007bff;
 }
+footer{
+    display: flex;
+    justify-content:space-between;
+    text-align: center;
+}
+footer a{
+    padding: 20px;
+    text-decoration: none;
+    color: black !important;
+}
+
 @media only screen and (min-width: 560px) {
     .js-con{
         display: flex;
