@@ -1,15 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost&family=Roboto+Slab&display=swap');
 body{
-    font-family: 'Jost', sans-serif;
+    font-family: 'Jost', sans-serif !important;
     transition: all ease-in .5s;
-    background-color: #EDF2F4 !important;
+    background-color: #00bcd4 !important;
 }
 .jumbotron{
+    background-color: #b2ebf2 !important;
     margin-top: 20px;
+    font-weight: 100 !important;
 }
-.js-news-container{
+.label{
+    padding: 20px;
+}
+.js-headlines-container{
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding: 10px;
+    overflow-x: scroll;
+    padding: 20px;
 }
+.news-box{
+    background-color: #b2ebf2 !important;
+    align-self: stretch;
+    display: inherit;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 5px;
+    width: 250px;
+    border: 1px solid #21252928;
+    border-radius: .3rem;
+}
+.news-img{
+    align-self: flex-start;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+    height: 150px;
+    width: 250px;
+    margin-bottom: 10px;
+}
+.news-body{
+    justify-content: center;
+    display: inherit;
+    flex-direction: column;
+    padding: 10px;
+    font-family: 'Roboto Slab', serif;
+}
+.news-box .btn{
+    margin: 10px;
+    position: relative;
+    align-self: stretch;
+    background-color: #ff5722 !important;
+    border-color: #dd2c00 !important;
+    color: white;
+}
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline:#007bff;
+}
+@media only screen and (min-width: 400px) {
+    .js-headlines-container{
+        display: flex;
+       justify-content: space-around;
+       flex-wrap: wrap;
+  }
+}
+
