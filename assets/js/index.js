@@ -3,7 +3,7 @@ let dataUrl =
   "http://newsapi.org/v2/top-headlines?country=in&apiKey=c085b3037a4d489b9887bdf45c143313";
 
 $(document).ready(function () {
-  $.get( dataUrl, function (data) {
+  $.get(proxyUrl+dataUrl, function (data) {
     let totalArticles = data.articles;
     totalArticles.forEach((article) => {
       if (article.content!=null){
