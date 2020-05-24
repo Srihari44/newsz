@@ -56,7 +56,7 @@ body{
 .navbar-toggler-icon:focus {
     outline:#007bff;
 }
-@media only screen and (min-width: 420px) {
+@media only screen and (min-width: 560px) {
     .js-headlines-container{
         display: flex;
        justify-content: space-around;
