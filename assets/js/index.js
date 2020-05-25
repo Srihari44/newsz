@@ -24,21 +24,6 @@ let getData = (query, conName) => {
   $.get(queryUrl, function (data) {
     let totalArticles = data.articles;
     totalArticles.forEach((article) => {
-      if (article.content != null) {
-        truncArticlecontent = article.content
-          .split(" ")
-          .splice(0, 20)
-          .join(" ");
-      } else {
-        if (article.description != null) {
-          truncArticlecontent = article.description
-            .split(" ")
-            .splice(0, 20)
-            .join(" ");
-        } else {
-          truncArticlecontent = "";
-        }
-      }
       $(conClass).append(
         `<div class="news-box">
         <div>
@@ -47,7 +32,6 @@ let getData = (query, conName) => {
         }">
             <div class="news-body">
               <h5 class="news-title">${article.title}</h5>
-              <p class="news-content">${truncArticlecontent}...</p>
               </div>
               </div>
               <button class="btn" onclick="openArticle(${JSON.stringify(article)
