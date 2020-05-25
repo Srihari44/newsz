@@ -57,7 +57,7 @@ small {
 
 #articleModal {
   font-family: "Roboto", sans-serif;
-  background-color: rgba(0, 0, 0, 0.80);
+  background-color: #3b697873;
 }
 .modal-img {
   height: 150px;
@@ -129,5 +129,8 @@ footer a {
     overflow-x: hidden;
     justify-content: space-around;
     flex-wrap: wrap;
+  }
+  .news-box{
+    min-width: 240px;
   }
 }
