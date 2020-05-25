@@ -131,6 +131,6 @@ footer a {
     flex-wrap: wrap;
   }
   .news-box{
-    min-width: 240px;
+    width: 260px !important;
   }
 }
