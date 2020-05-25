@@ -10,16 +10,16 @@ $(document).on({
 
 $(document).ready(function () {
   getData("", "headlines");
-  // getData("&category=business", "business");
-  // getData("&category=entertainment", "entertainment");
-  // getData("&category=health", "health");
-  // getData("&category=science", "science");
-  // getData("&category=sports", "sports");
-  // getData("&category=technology", "technology");
+  getData("&category=business", "business");
+  getData("&category=entertainment", "entertainment");
+  getData("&category=health", "health");
+  getData("&category=science", "science");
+  getData("&category=sports", "sports");
+  getData("&category=technology", "technology");
 });
 
 let getData = (query, conName) => {
-  let queryUrl = dataUrl + query + apiKey;
+  let queryUrl = proxyUrl + dataUrl + query + apiKey;
   let conClass = ".js-" + conName + "-container";
   $.get(queryUrl, function (data) {
     let totalArticles = data.articles;
