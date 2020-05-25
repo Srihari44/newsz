@@ -22,7 +22,7 @@ $(document).ready(function () {
 
 
 let getData = (query, conName) => {
-  let queryUrl = proxyUrl+dataUrl + query + apiKey;
+  let queryUrl = proxyUrl + dataUrl + query + apiKey;
   let conClass = ".js-" + conName + "-container";
   $.get(queryUrl, function (data) {
     let totalArticles = data.articles;
@@ -51,33 +51,49 @@ let getData = (query, conName) => {
               <p class="news-content">${truncArticlecontent}...</p>
               </div>
               </div>
-              <button class="btn" onclick="openArticle(["${article.title}","${article.content}","${article.author}","${article.publishedAt}","${article.url}","${article.urlToImage}","${article.source.name}"])">Read more</a>
+              <button class="btn" onclick="openArticle(${JSON.stringify(article).split('"').join("&quot;")})">Read more</a>
           </div>`
       );
     });
-  }).then(() => {
-    console.log("Done " + conName);
-  });
+  })
 };
 
 
-let openArticle = (articleArr) => {
+let openArticle = (articleObj) => {
   $("#articleModal").modal("show");
   $(".js-Article-con").empty();
-  document.getElementById("articleTitle").innerText = articleArr[0];
+  if (articleObj.content != null) {
+    truncArticlecontent = articleObj.content
+      .split(" ")
+      .splice(0, 25)
+      .join(" ");
+  } else {
+    if (articleObj.description != null) {
+      truncArticlecontent = articleObj.description
+        .split(" ")
+        .splice(0, 25)
+        .join(" ");
+    } else {
+      truncArticlecontent = "";
+    }
+  }
+  document.getElementById("articleTitle").innerText = articleObj.title;
     $(".js-Article-con").append(
-      `<div class="d-flex w-100 justify-content-center">
-      <small>${articleArr[2]}</small>
-        <small>${articleArr[3]}</small>
+      `<div class="d-flex justify-content-between">
+      <img class="modal-img" src="${articleObj.urlToImage}" alt="${articleObj.title}">
+        <small>${articleObj.publishedAt.slice(0, 10).split("-").reverse().join("-")}</small>
         </div>
-        <img class="news-img" src="${articleArr[5]}" alt="${articleArr[0]}">
-        <p class="mb-1">${articleArr[1]}</p>
-      <small>${articleArr[6]}</small>
+        <p>${articleObj.author}</p>
+        <p class="mb-1">${truncArticlecontent}...</p>
       `
     );
-    $(".js-article-footer").append(
-      `<button type="button" class="btn" onclick="location.href = '${articleArr[4]}'">Visit source</button>`
-    )
+    $(".js-Article-footer").empty();
+    $(".js-Article-footer").append(
+      `
+      <small>${articleObj.source.name}</small>
+      <button type="button" class="btn" onclick="location.href = '${articleObj.url}'">Visit source</button>
+      `
+      )
 }
 
 
@@ -106,7 +122,7 @@ let searcharticles = () => {
         }" class="list-group-item list-group-item-action">
         <div class="d-flex w-100 justify-content-between">
         <h5 class="mb-1">${article.title}</h5>
-        <small>${article.publishedAt.slice(0, 10)}</small>
+        <small>${article.publishedAt.slice(0, 10).split("-").reverse().join("-")}</small>
         </div>
         <p class="mb-1">${truncArticlecontent}</p>
       <small>${article.source.name}</small>

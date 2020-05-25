@@ -51,6 +51,19 @@ body {
   width: 274px;
   margin-bottom: 10px;
 }
+small{
+  padding-left: 10px !important;
+}
+.modal-img{
+  height: 150px;
+  width: 240px;
+  border-radius: .3rem;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.modal-footer{
+  justify-content: space-between !important;
+}
 .news-body {
   justify-content: center;
   display: inherit;
