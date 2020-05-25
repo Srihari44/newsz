@@ -27,9 +27,7 @@ let getData = (query, conName) => {
       $(conClass).append(
         `<div class="news-box">
         <div>
-            <img class="news-img" src="${article.urlToImage}" alt="${
-          article.title
-        }">
+            <img class="news-img" src="${article.urlToImage}" alt="${article.title}">
             <div class="news-body">
               <h5 class="news-title">${article.title}</h5>
               </div>
