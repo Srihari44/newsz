@@ -1,4 +1,4 @@
-let proxyUrl = "https://cors-anywhere.herokuapp.com/";
+let proxyUrl = "https://crossorigin.me/";
 let dataUrl = "http://newsapi.org/v2/top-headlines?country=in";
 const apiKey = "&apiKey=c085b3037a4d489b9887bdf45c143313";
 
