@@ -1,6 +1,5 @@
-let proxyUrl = "https://cors-anywhere.herokuapp.com/";
-let dataUrl = "http://newsapi.org/v2/top-headlines?country=in";
-const apiKey = "&apiKey=c085b3037a4d489b9887bdf45c143313";
+const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+const dataUrl = "https://pure-castle-32510.herokuapp.com";
 
 $(document).on({
   ajaxStop: function () {
@@ -9,17 +8,17 @@ $(document).on({
 });
 
 $(document).ready(function () {
-  getData("", "headlines");
-  getData("&category=business", "business");
-  getData("&category=entertainment", "entertainment");
-  getData("&category=health", "health");
-  getData("&category=science", "science");
-  getData("&category=sports", "sports");
-  getData("&category=technology", "technology");
+  getData("/", "headlines");
+  getData("/business", "business");
+  getData("/entertainment", "entertainment");
+  getData("/health", "health");
+  getData("/science", "science");
+  getData("/sports", "sports");
+  getData("/technology", "technology");
 });
 
 let getData = (query, conName) => {
-  let queryUrl =  proxyUrl + "https://pure-castle-32510.herokuapp.com/"
+  let queryUrl =  proxyUrl + dataUrl + query;
   let conClass = ".js-" + conName + "-container";
   $.get(queryUrl, function (data) {
     console.log(data)
