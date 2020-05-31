@@ -19,7 +19,7 @@ $(document).ready(function () {
 });
 
 let getData = (query, conName) => {
-  let queryUrl = proxyUrl + dataUrl + query + apiKey;
+  let queryUrl = "https://pure-castle-32510.herokuapp.com/"
   let conClass = ".js-" + conName + "-container";
   $.get(queryUrl, function (data) {
     let totalArticles = data.articles;
