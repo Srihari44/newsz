@@ -19,9 +19,10 @@ $(document).ready(function () {
 });
 
 let getData = (query, conName) => {
-  let queryUrl = "https://pure-castle-32510.herokuapp.com/"
+  let queryUrl =  proxyUrl + "https://pure-castle-32510.herokuapp.com/"
   let conClass = ".js-" + conName + "-container";
   $.get(queryUrl, function (data) {
+    console.log(data)
     let totalArticles = data.articles;
     totalArticles.forEach((article) => {
       $(conClass).append(
