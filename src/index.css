@@ -35,6 +35,9 @@ body {
   padding-left: 12px;
 }
 
+.active{
+  color:#84a9ac;
+}
 /* #articleModal {
   font-family: "Roboto", sans-serif;
   background-color: #000000be;

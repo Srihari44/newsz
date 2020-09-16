@@ -4,32 +4,32 @@ import Reveal from "react-reveal/Reveal";
 import Card from "../Components/Card";
 import { Row, Col, Container, Jumbotron, Spinner } from "react-bootstrap";
 import axios from "axios";
+import {withRouter} from 'react-router-dom'
 import "animate.css";
-import res from "./Data.json";
 
 function Home(props) {
   const [data, dataHandler] = useState({ data: null });
   useEffect(() => {
-    // axios.get(`/${props.category}`).then((res) => {
-    //   dataHandler({ data: res.data.articles.slice(0, 10) });
-    // });
-    dataHandler({ data: res });
-  }, []);
+    axios.get(`/${props.category}`).then((res) => {
+      dataHandler({ data: res.data.articles });
+    });
+  }, [props.category]);
   return (
     <div>
-      <Jumbotron className="mt-5 bg-secondary">
+      {props.location.pathname==='/' ? <Jumbotron className="mt-5 bg-secondary">
         <Container>
           <h1 className="display-4">Hi, This is NewsZ</h1>
           <p className="lead">One n only news you ever need.</p>
         </Container>
       </Jumbotron>
-      <h2 className="label">Your Top-headlines</h2>
+      : null}
+      <h2 className="label">{props.category.length!=0 ? props.category.charAt(0).toUpperCase() + props.category.slice(1) : "Your Top-headlines"}</h2>
       {!data.data ? (
-        <Spinner animation="border" role="status">
+        <Spinner className='mt-5 ml-5' animation="border" role="status">
           <span className="sr-only">Loading...</span>
         </Spinner>
       ) : (
-        <Zoom bottom>
+        <Zoom bottom appear>
           <Row xs={1} sm={2} md={3} lg={4} className="mx-auto">
             <Reveal effect="animate__fadeIn">
               {data.data.map((item) => (
@@ -44,4 +44,4 @@ function Home(props) {
     </div>
   );
 }
-export default Home;
+export default withRouter(Home);
