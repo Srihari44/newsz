@@ -6,9 +6,9 @@ import { Switch, Route } from 'react-router-dom'
 import './App.css';
 
 function App() {
+
+  axios.defaults.baseURL = 'https://pure-castle-32510.herokuapp.com/'
   
-  const dataUrl = 'https://pure-castle-32510.herokuapp.com/'
-  axios.defaults.baseURL = dataUrl
   return (
     <div className="App">
       <NavBar />
@@ -21,6 +21,21 @@ function App() {
         <Route path="/sports" render={() =><DataContainer category="sports"/>}/>
         <Route path="/technology" render={() =><DataContainer category="technology"/>}/>
       </Switch>
+      <footer className='d-flex justify-content-around m-4'>
+      <div>
+        <p className="lead">Powered by,</p>
+        <a href="https://newsapi.org/"
+          ><img
+            style={{height: "32px", width: "auto"}}
+            src="https://newsapi.org/apple-touch-icon.png"
+            alt="N"
+        /></a>
+      </div>
+      <div>
+        <p className="lead">Designed and developed by,</p>
+        <a href="https://vsrihari.co/">V. Sri hari</a>
+      </div>
+    </footer>
     </div>
   );
 }

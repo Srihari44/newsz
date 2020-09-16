@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Zoom } from "react-reveal";
 import Reveal from "react-reveal/Reveal";
 import Card from "../Components/Card";
-import { Row, Col, Container, Jumbotron, Spinner } from "react-bootstrap";
+import Loader from "../Components/Loader";
+import Header from "../Components/Header";
+import { Row, Col } from "react-bootstrap";
 import axios from "axios";
-import {withRouter} from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 import "animate.css";
+// import res from '../data.json'
 
 function Home(props) {
   const [data, dataHandler] = useState({ data: null });
@@ -13,28 +16,35 @@ function Home(props) {
     axios.get(`/${props.category}`).then((res) => {
       dataHandler({ data: res.data.articles });
     });
+    // setTimeout(()=>dataHandler({ data: res }),1500)
+    return () => {
+      dataHandler({ data: null });
+    };
   }, [props.category]);
+
+  const fullPostHandler = (articleData) => {};
+
   return (
-    <div>
-      {props.location.pathname==='/' ? <Jumbotron className="mt-5 bg-secondary">
-        <Container>
-          <h1 className="display-4">Hi, This is NewsZ</h1>
-          <p className="lead">One n only news you ever need.</p>
-        </Container>
-      </Jumbotron>
-      : null}
-      <h2 className="label">{props.category.length!==0 ? props.category.charAt(0).toUpperCase() + props.category.slice(1) : "Your Top-headlines"}</h2>
+    <div className="px-4">
+      {props.location.pathname === "/" ? <Header /> : null}
+      <h2 className="label">
+        {props.category.length !== 0
+          ? props.category.charAt(0).toUpperCase() + props.category.slice(1)
+          : "Your Top-headlines"}
+      </h2>
       {!data.data ? (
-        <Spinner className='mt-5 ml-5' animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
+        <Loader />
       ) : (
         <Zoom bottom appear>
-          <Row xs={1} sm={2} md={3} lg={4} className="mx-auto">
+          <Row xs={1} sm={2} md={3} lg={4} className="align-items-stretch">
             <Reveal effect="animate__fadeIn">
               {data.data.map((item) => (
-                <Col className="pl-4 my-3">
-                  <Card imgUrl={item.urlToImage} title={item.title} />
+                <Col className="d-flex justify-content-center p-3 h-100">
+                  <Card
+                    imgUrl={item.urlToImage}
+                    title={item.title}
+                    clickHandler={() => fullPostHandler(item)}
+                  />
                 </Col>
               ))}
             </Reveal>
