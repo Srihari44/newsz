@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@400;500&display=swap");
+
+body {
+  font-family: "Jost", sans-serif !important;
+  background-color: #204051 !important;
+  color: white !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+.btn {
+  border-color: #84a9ac !important;
+  background-color: #204051 !important;
+  color: #cae8d5 !important;
+}
+
+.btn:hover {
+  outline: #84a9ac;
+}
+
+.card-body {
+  font-family: "Roboto", sans-serif;
+}
+.card .btn {
+  align-self: stretch;
+  background-color: #cae8d5 !important;
+  color: #204051 !important;
+}
+
+.card .btn:hover {
+  background-color: #204051 !important;
+  color: #cae8d5 !important;
+}
+
+.label {
+  padding-left: 12px;
+}
+
+/* #articleModal {
+  font-family: "Roboto", sans-serif;
+  background-color: #000000be;
+}
+
+.modal-img {
+  height: 150px;
+  width: 240px;
+  border-radius: 0.3rem;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.modal-footer {
+  justify-content: space-between !important;
+} */
+
+
+
+.modal-content {
+  background-color: #204051 !important;
+  color: #cae8d5 !important;
+}
+
+.close {
+  color: #cae8d5 !important;
+}
+
+.list-group-item {
+  background-color: #3b6978 !important;
+  color: #cae8d5 !important;
+}
+
+footer {
+  display: flex !important;
+  margin: 10px;
+  justify-content: space-evenly !important;
+  font-size: 24px;
+}
+
+footer div {
+  padding: 20px;
+}
+
+footer a {
+  text-decoration: none;
+  color: white !important;
+  font-weight: bold;
+}
+
