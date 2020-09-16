@@ -23,7 +23,7 @@ function Home(props) {
         </Container>
       </Jumbotron>
       : null}
-      <h2 className="label">{props.category.length!=0 ? props.category.charAt(0).toUpperCase() + props.category.slice(1) : "Your Top-headlines"}</h2>
+      <h2 className="label">{props.category.length!==0 ? props.category.charAt(0).toUpperCase() + props.category.slice(1) : "Your Top-headlines"}</h2>
       {!data.data ? (
         <Spinner className='mt-5 ml-5' animation="border" role="status">
           <span className="sr-only">Loading...</span>
