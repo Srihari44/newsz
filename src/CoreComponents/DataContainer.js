@@ -1,29 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { Zoom } from "react-reveal";
-import Reveal from "react-reveal/Reveal";
+import { Zoom, Fade } from "react-reveal";
 import Card from "../Components/Card";
 import Loader from "../Components/Loader";
 import Header from "../Components/Header";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
-import { withRouter } from "react-router-dom";
-import "animate.css";
-// import res from '../data.json'
-
+import {  withRouter } from "react-router-dom";
+// import res from "../tempData.json";
 function Home(props) {
   const [data, dataHandler] = useState({ data: null });
   useEffect(() => {
     axios.get(`/${props.category}`).then((res) => {
       dataHandler({ data: res.data.articles });
     });
-    // setTimeout(()=>dataHandler({ data: res }),1500)
+    // setTimeout(() => dataHandler({ data: res }), 1500);
     return () => {
       dataHandler({ data: null });
     };
   }, [props.category]);
 
-  const fullPostHandler = (articleData) => {};
-
+  const fullPostHandler = (articleData) => {
+        props.history.push(
+          {
+            pathname: '/fullpost/' + articleData.title,
+            state: articleData,
+          }
+        )
+  };
   return (
     <div className="px-4">
       {props.location.pathname === "/" ? <Header /> : null}
@@ -35,19 +38,19 @@ function Home(props) {
       {!data.data ? (
         <Loader />
       ) : (
-        <Zoom bottom appear>
-          <Row xs={1} sm={2} md={3} lg={4} className="align-items-stretch">
-            <Reveal effect="animate__fadeIn">
-              {data.data.map((item) => (
-                <Col className="d-flex justify-content-center p-3 h-100">
+        <Zoom left>
+          <Row sm={2} md={3} lg={4} className="align-items-stretch">
+            {data.data.map((item) => (
+              <Col className="d-flex justify-content-center p-3">
+                <Fade left>
                   <Card
                     imgUrl={item.urlToImage}
                     title={item.title}
                     clickHandler={() => fullPostHandler(item)}
                   />
-                </Col>
-              ))}
-            </Reveal>
+                </Fade>
+              </Col>
+            ))}
           </Row>
         </Zoom>
       )}

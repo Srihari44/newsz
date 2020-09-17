@@ -20,51 +20,21 @@ body {
 .card-body {
   font-family: "Roboto", sans-serif;
 }
-.card .btn {
+.card .btn,
+.fullpost .btn {
   align-self: stretch;
   background-color: #cae8d5 !important;
   color: #204051 !important;
 }
 
-.card .btn:hover {
+.card .btn:hover,
+.fullpost .btn:hover {
   background-color: #204051 !important;
   color: #cae8d5 !important;
 }
 
-.active{
-  color:white;
-}
-/* #articleModal {
-  font-family: "Roboto", sans-serif;
-  background-color: #000000be;
-}
-
-.modal-img {
-  height: 150px;
-  width: 240px;
-  border-radius: 0.3rem;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-
-.modal-footer {
-  justify-content: space-between !important;
-} */
-
-
-
-.modal-content {
-  background-color: #204051 !important;
-  color: #cae8d5 !important;
-}
-
-.close {
-  color: #cae8d5 !important;
-}
-
-.list-group-item {
-  background-color: #3b6978 !important;
-  color: #cae8d5 !important;
+.active {
+  color: white;
 }
 
 footer {
@@ -76,4 +46,3 @@ footer a {
   color: white !important;
   font-weight: bold;
 }
-
