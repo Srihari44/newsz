@@ -1,33 +1,44 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
+import { Fade } from "react-bootstrap";
 
 function Fulldata(props) {
   const articleObj = props.location.state;
-  console.log(articleObj);
-  const content = articleObj.content || articleObj.description || "";
+  let content = articleObj.content || articleObj.description || "";
+  if (articleObj.content && articleObj.description) {
+    content =
+      articleObj.description.length > articleObj.content.length
+        ? articleObj.description
+        : articleObj.content;
+  }
   return (
-    <div className="fullpost m-3 d-flex flex-column justify-content-between">
-      <div>
-        <h3>{articleObj.title}</h3>
-        <img
-          style={{ maxWidth: "300px" }}
-          className="w-100 h-75 rounded"
-          src={
-            articleObj.urlToImage ||
-            "https://newsapi.org/images/n-logo-border.png"
-          }
-          alt={articleObj.title}
-        />
-        <small>
-          {articleObj.publishedAt.slice(0, 10).split("-").reverse().join("-")}
-        </small>
-      </div>
-      <p>{articleObj.author}</p>
-      <p className="mb-2">{content.split("[+")[0]}</p>
-      <small className="mb-4">{articleObj.source.name}</small>
-      <a style={{ maxWidth: "300px" }} className="btn" href={articleObj.url}>
-        Visit source
-      </a>
+    <div className="fullpost px-4">
+      <h3>{articleObj.title.split(" - ")[0]}</h3>
+      <p>
+        {articleObj.publishedAt.slice(0, 10).split("-").reverse().join("-")}
+      </p>
+      <Row sm={1} md={2}>
+        <Col sm={4}>
+          <img
+            className="rounded w-100 h-75"
+            src={
+              articleObj.urlToImage ||
+              "https://newsapi.org/images/n-logo-border.png"
+            }
+            alt={articleObj.title}
+          />
+          <p className="mt-2">{articleObj.author ? articleObj.author : null}</p>
+        </Col>
+        <Col>
+          <div>
+            <p className="mb-2 text-justify">{content.split("[+")[0]}</p>
+            <a className="btn mt-4 align-self-end" href={articleObj.url}>
+              Read more on {articleObj.source.name}
+            </a>
+          </div>
+        </Col>
+      </Row>
     </div>
   );
 }

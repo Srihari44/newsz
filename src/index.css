@@ -20,6 +20,12 @@ body {
 .card-body {
   font-family: "Roboto", sans-serif;
 }
+.fullpost {
+  font-family: "Roboto", sans-serif;
+}
+.card .btn {
+  font-family: "Jost", sans-serif !important;
+}
 .card .btn,
 .fullpost .btn {
   align-self: stretch;
@@ -40,9 +46,14 @@ body {
 footer {
   font-size: 24px;
 }
-
+hr {
+  color: white;
+}
 footer a {
+  color: white;
+}
+footer a:hover {
+  color: white;
   text-decoration: none;
-  color: white !important;
-  font-weight: bold;
+  border-bottom: 1px dashed white;
 }

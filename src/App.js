@@ -39,21 +39,15 @@ function App() {
         />
         <Route path="/fullpost/:title" component={FullData} />
       </Switch>
-      <footer className="d-flex justify-content-around m-4">
-        <div>
-          <p className="lead">Powered by,</p>
-          <a href="https://newsapi.org/">
-            <img
-              style={{ height: "32px", width: "auto" }}
-              src="https://newsapi.org/apple-touch-icon.png"
-              alt="N"
-            />
-          </a>
-        </div>
-        <div>
-          <p className="lead">Designed and developed by,</p>
+      <hr />
+      <footer className="text-center sticky-bottom my-3">
+        <p className="lead">
+          Powered by, <a href="https://newsapi.org/">News API</a>
+        </p>
+        <p className="lead">
+          Made with <span role="img">💙</span> by,{" "}
           <a href="https://vsrihari.co/">V. Sri hari</a>
-        </div>
+        </p>
       </footer>
     </div>
   );

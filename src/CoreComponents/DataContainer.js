@@ -5,30 +5,34 @@ import Loader from "../Components/Loader";
 import Header from "../Components/Header";
 import { Row, Col } from "react-bootstrap";
 import axios from "axios";
-import {  withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 // import res from "../tempData.json";
 function Home(props) {
   const [data, dataHandler] = useState({ data: null });
   useEffect(() => {
+    // For Production
     axios.get(`/${props.category}`).then((res) => {
       dataHandler({ data: res.data.articles });
     });
+
+    //For Development
     // setTimeout(() => dataHandler({ data: res }), 1500);
-    return () => {
-      dataHandler({ data: null });
+
+    return (prevProps) => {
+      if (prevProps !== props.category) {
+        dataHandler({ data: null });
+      }
     };
   }, [props.category]);
 
   const fullPostHandler = (articleData) => {
-        props.history.push(
-          {
-            pathname: '/fullpost/' + articleData.title,
-            state: articleData,
-          }
-        )
+    props.history.push({
+      pathname: "/fullpost/" + articleData.title,
+      state: articleData,
+    });
   };
   return (
-    <div className="px-4">
+    <div className="px-5">
       {props.location.pathname === "/" ? <Header /> : null}
       <h2 className="label">
         {props.category.length !== 0
