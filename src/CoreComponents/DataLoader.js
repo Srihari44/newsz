@@ -8,19 +8,29 @@ import { withRouter } from "react-router-dom";
 
 function Home(props) {
   const [state, stateHandler] = useState({ data: null });
+
   useEffect(() => {
-    // // For Production
-    const getUrl = props.match.params.query
-      ? `search/${props.match.params.query}`
+    let getTitle = props.match.params.query
+      ? props.match.params.query
       : props.category;
-    axios.get(getUrl).then((res) => {
-      stateHandler({ data: res.data.articles });
-    });
+    let articleData = sessionStorage.getItem(getTitle);
+    if (!articleData) {
+      const getUrl = props.match.params.query
+        ? `search/${getTitle}`
+        : props.category;
+      axios.get(getUrl).then((res) => {
+        stateHandler({ data: res.data.articles });
+        sessionStorage.setItem(getTitle, JSON.stringify(res.data.articles));
+      });
+    } else {
+      stateHandler({ data: JSON.parse(articleData) });
+    }
 
     //For Development
-    // setTimeout(() => dataHandler({ data: res }), 1500);
+    // setTimeout(() => stateHandler({ data: res }), 1500);
 
-    return () => stateHandler({ data: null });
+    return(()=>stateHandler({data:null}))
+
   }, [props.category, props.match.params.query]);
 
   let title = "Your Top-headlines";
