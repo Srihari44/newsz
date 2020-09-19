@@ -1,10 +1,10 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
-import { Fade } from "react-bootstrap";
 
 function Fulldata(props) {
   const articleObj = props.location.state;
+
   let content = articleObj.content || articleObj.description || "";
   if (articleObj.content && articleObj.description) {
     content =
@@ -14,7 +14,9 @@ function Fulldata(props) {
   }
   return (
     <div className="fullpost px-4">
-      <h3>{articleObj.title.split(" - ")[0]}</h3>
+      <h3 style={{ fontSize: "2em", fontWeight: "200" }}>
+        {articleObj.title.split(" - ")[0]}
+      </h3>
       <p>
         {articleObj.publishedAt.slice(0, 10).split("-").reverse().join("-")}
       </p>
@@ -32,7 +34,9 @@ function Fulldata(props) {
         </Col>
         <Col>
           <div>
-            <p className="mb-2 text-justify">{content.split("[+")[0]}</p>
+            <p style={{ fontSize: "1.125em" }} className="mb-2 text-justify">
+              {content.split("[+")[0]}
+            </p>
             <a className="btn mt-4 align-self-end" href={articleObj.url}>
               Read more on {articleObj.source.name}
             </a>
