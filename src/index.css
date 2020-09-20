@@ -6,14 +6,20 @@ body {
   color: white !important;
   text-rendering: optimizeLegibility !important;
 }
-
-.btn {
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: #007bff;
+}
+.btn,#btn-nav {
   border-color: #84a9ac !important;
   background-color: #204051 !important;
   color: #cae8d5 !important;
 }
 
-.btn:hover {
+.btn:hover, #btn-nav:hover {
+  background-color: #cae8d5 !important;
+  color: #204051 !important;
   outline: #84a9ac;
 }
 

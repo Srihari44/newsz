@@ -1,48 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 
 function Fulldata(props) {
-  const articleObj = props.location.state;
+  const totalData =  props.location.state.totalData
+  const [index, indexHandler] = useState(props.location.state.itemIdx)
 
-  let content = articleObj.content || articleObj.description || "";
-  if (articleObj.content && articleObj.description) {
+  let content = totalData[index].content || totalData[index].description || "";
+  if (totalData[index].content && totalData[index].description) {
     content =
-      articleObj.description.length > articleObj.content.length
-        ? articleObj.description
-        : articleObj.content;
+      totalData[index].description.length > totalData[index].content.length
+        ? totalData[index].description
+        : totalData[index].content;
   }
   return (
     <div className="fullpost px-4">
       <h3 style={{ fontSize: "2em", fontWeight: "200" }}>
-        {articleObj.title.split(" - ")[0]}
+        {totalData[index].title.split(" - ")[0]}
       </h3>
       <p>
-        {articleObj.publishedAt.slice(0, 10).split("-").reverse().join("-")}
+        {totalData[index].publishedAt.slice(0, 10).split("-").reverse().join("-")}
       </p>
       <Row sm={1} md={2}>
         <Col sm={4}>
           <img
             className="rounded w-100 h-75"
             src={
-              articleObj.urlToImage ||
+              totalData[index].urlToImage ||
               "https://newsapi.org/images/n-logo-border.png"
             }
-            alt={articleObj.title}
+            alt={totalData[index].title}
           />
-          <p className="mt-2">{articleObj.author ? articleObj.author : null}</p>
+          <p className="mt-2">{totalData[index].author ? totalData[index].author : null}</p>
         </Col>
         <Col>
           <div>
             <p style={{ fontSize: "1.125em" }} className="mb-2 text-justify">
               {content.split("[+")[0]}
             </p>
-            <a className="btn mt-4 align-self-end" href={articleObj.url}>
-              Read more on {articleObj.source.name}
+            <a className="btn mt-4 align-self-end" href={totalData[index].url}>
+              Read more on {totalData[index].source.name}
             </a>
           </div>
         </Col>
       </Row>
+      <div className="d-flex justify-content-between mt-4">
+        {totalData[index-1] ? (
+          <button
+          id="btn-nav"
+            className="btn"
+            onClick={() =>
+              indexHandler(index-1)
+            }
+          >
+            Previous article
+          </button>
+        ) : null}
+        {totalData[index+1] ? (
+          <button
+          id="btn-nav"
+            className="btn btn-nav"
+            onClick={() =>
+              indexHandler(index+1)
+            }
+          >
+            Next article
+          </button>
+        ) : null}
+      </div>
     </div>
   );
 }

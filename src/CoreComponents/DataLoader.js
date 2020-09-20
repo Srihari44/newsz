@@ -4,7 +4,6 @@ import Header from "../Components/Header";
 import DataContainer from "./DataContainer";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-// import res from "../tempData.json";
 
 function Home(props) {
   const [state, stateHandler] = useState({ data: null });
@@ -25,9 +24,6 @@ function Home(props) {
     } else {
       stateHandler({ data: JSON.parse(articleData) });
     }
-
-    //For Development
-    // setTimeout(() => stateHandler({ data: res }), 1500);
 
     return(()=>stateHandler({data:null}))
 
