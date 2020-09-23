@@ -3,8 +3,8 @@ import { withRouter } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 
 function Fulldata(props) {
-  const totalData =  props.location.state.totalData
-  const [index, indexHandler] = useState(props.location.state.itemIdx)
+  const totalData = props.location.state.totalData;
+  const [index, indexHandler] = useState(props.location.state.itemIdx);
 
   let content = totalData[index].content || totalData[index].description || "";
   if (totalData[index].content && totalData[index].description) {
@@ -19,7 +19,11 @@ function Fulldata(props) {
         {totalData[index].title.split(" - ")[0]}
       </h3>
       <p>
-        {totalData[index].publishedAt.slice(0, 10).split("-").reverse().join("-")}
+        {totalData[index].publishedAt
+          .slice(0, 10)
+          .split("-")
+          .reverse()
+          .join("-")}
       </p>
       <Row sm={1} md={2}>
         <Col sm={4}>
@@ -31,7 +35,9 @@ function Fulldata(props) {
             }
             alt={totalData[index].title}
           />
-          <p className="mt-2">{totalData[index].author ? totalData[index].author : null}</p>
+          <p className="mt-2">
+            {totalData[index].author ? totalData[index].author : null}
+          </p>
         </Col>
         <Col>
           <div>
@@ -45,24 +51,20 @@ function Fulldata(props) {
         </Col>
       </Row>
       <div className="d-flex justify-content-between mt-4">
-        {totalData[index-1] ? (
+        {totalData[index - 1] ? (
           <button
-          id="btn-nav"
+            id="btn-nav"
             className="btn"
-            onClick={() =>
-              indexHandler(index-1)
-            }
+            onClick={() => indexHandler(index - 1)}
           >
             Previous article
           </button>
         ) : null}
-        {totalData[index+1] ? (
+        {totalData[index + 1] ? (
           <button
-          id="btn-nav"
+            id="btn-nav"
             className="btn btn-nav"
-            onClick={() =>
-              indexHandler(index+1)
-            }
+            onClick={() => indexHandler(index + 1)}
           >
             Next article
           </button>

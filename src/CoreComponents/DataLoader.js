@@ -25,8 +25,7 @@ function Home(props) {
       stateHandler({ data: JSON.parse(articleData) });
     }
 
-    return(()=>stateHandler({data:null}))
-
+    return () => stateHandler({ data: null });
   }, [props.category, props.match.params.query]);
 
   let title = "Your Top-headlines";

@@ -7,15 +7,19 @@ import { withRouter } from "react-router-dom";
 
 function dataProvider(props) {
   const [title, titleHandler] = useState("Your Top-headlines");
-  const [currData, currDataHandler] = useState(null)
+  const [currData, currDataHandler] = useState(null);
   const [data, dataHandler] = useState(null);
 
-  const DataContext = React.createContext({ dataTitle: title, dataValue: data, currData: currData});
+  const DataContext = React.createContext({
+    dataTitle: title,
+    dataValue: data,
+    currData: currData,
+  });
 
   const fullPostLoader = (idx) => {
-    currDataHandler(data[idx])
-    props.history.push(`fullpost/${data[idx]}`)
-  }
+    currDataHandler(data[idx]);
+    props.history.push(`fullpost/${data[idx]}`);
+  };
 
   useEffect(() => {
     let getUrl = props.category;
@@ -37,9 +41,14 @@ function dataProvider(props) {
 
   return (
     <DataContext.Provider
-      value={{ dataTitle: title, dataValue: data, selectHandler: fullPostLoader, fullData: currData}}
+      value={{
+        dataTitle: title,
+        dataValue: data,
+        selectHandler: fullPostLoader,
+        fullData: currData,
+      }}
     >
-        {props.children}
+      {props.children}
     </DataContext.Provider>
   );
 }

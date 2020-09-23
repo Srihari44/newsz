@@ -1,4 +1,12 @@
-## Available Scripts
+# NewsZ
+
+Modern news app powered by React and News API.
+
+### Deploy status
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8109d72e-1c2b-4ac5-bc18-0487e46aad80/deploy-status)](https://app.netlify.com/sites/newsz/deploys)
+
+### Development
 
 ### `yarn start`
 

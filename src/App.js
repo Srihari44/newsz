@@ -5,8 +5,8 @@ import DataLoader from "./CoreComponents/DataLoader";
 import FullData from "./CoreComponents/FullData";
 import { Switch, Route } from "react-router-dom";
 import ScrollToTop from "./HOC/ScrollToTop";
+
 function App() {
-  
   axios.defaults.baseURL = "https://pure-castle-32510.herokuapp.com/";
 
   return (

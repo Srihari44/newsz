@@ -11,13 +11,15 @@ body {
 .navbar-toggler-icon:focus {
   outline: #007bff;
 }
-.btn,#btn-nav {
+.btn,
+#btn-nav {
   border-color: #84a9ac !important;
   background-color: #204051 !important;
   color: #cae8d5 !important;
 }
 
-.btn:hover, #btn-nav:hover {
+.btn:hover,
+#btn-nav:hover {
   background-color: #cae8d5 !important;
   color: #204051 !important;
   outline: #84a9ac;
