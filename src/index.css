@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@200;400;500&display=swap");
+
+body {
+  font-family: "Jost", sans-serif !important;
+  background-color: #204051 !important;
+  color: white !important;
+  text-rendering: optimizeLegibility !important;
+}
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: #007bff;
+}
+.btn,#btn-nav {
+  border-color: #84a9ac !important;
+  background-color: #204051 !important;
+  color: #cae8d5 !important;
+}
+
+.btn:hover, #btn-nav:hover {
+  background-color: #cae8d5 !important;
+  color: #204051 !important;
+  outline: #84a9ac;
+}
+
+.card-body {
+  font-family: "Roboto", sans-serif;
+}
+.fullpost {
+  font-family: "Roboto", sans-serif;
+}
+.card .btn {
+  font-family: "Jost", sans-serif !important;
+}
+.card .btn,
+.fullpost .btn {
+  align-self: stretch;
+  background-color: #cae8d5 !important;
+  color: #204051 !important;
+}
+
+.card .btn:hover,
+.fullpost .btn:hover {
+  background-color: #204051 !important;
+  color: #cae8d5 !important;
+}
+
+.active {
+  color: white;
+}
+
+footer {
+  font-size: 24px;
+}
+hr {
+  color: white;
+}
+footer a {
+  color: white;
+}
+footer a:hover {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px dashed white;
+}
