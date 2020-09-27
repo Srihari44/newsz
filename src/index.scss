@@ -1,4 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@200;400;500&display=swap");
+$theme-colors: (
+  "base": #204051,
+  "secondary": #3b6978,
+  "hover": #cae8d5,
+  "nav": rgba(32, 64, 81, 0.98),
+  "overlay": #3b6978ab,
+);
+$grid-breakpoints: (
+  xs: 0,
+  sm: 540px,
+  md: 730px,
+  lg: 1000px,
+  xl: 1280px,
+);
 
 body {
   font-family: "Jost", sans-serif !important;
@@ -6,11 +19,13 @@ body {
   color: white !important;
   text-rendering: optimizeLegibility !important;
 }
+
 .navbar-toggler:focus,
 .navbar-toggler:active,
 .navbar-toggler-icon:focus {
   outline: #007bff;
 }
+
 .btn,
 #btn-nav {
   border-color: #84a9ac !important;
@@ -50,7 +65,16 @@ body {
 .active {
   color: white;
 }
-
+.carousel-item {
+  cursor: pointer;
+}
+.carousel-caption {
+  top: 8%;
+}
+.carousel-text {
+  backdrop-filter: blur(3px);
+  font-size: 1.25rem;
+}
 footer {
   font-size: 24px;
 }
@@ -59,9 +83,12 @@ hr {
 }
 footer a {
   color: white;
+  &:hover {
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px dashed white;
+  }
 }
-footer a:hover {
-  color: white;
-  text-decoration: none;
-  border-bottom: 1px dashed white;
-}
+@import url("https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@200;400;500&display=swap");
+
+@import "~bootstrap/scss/bootstrap.scss";

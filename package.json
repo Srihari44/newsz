@@ -20,6 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build && echo '/* /index.html  200' | cat >build/_redirects",
     "test": "react-scripts test",
+    "format": "prettier --write 'src/**/*.{js,scss,json}' 'public/*.{html,json}'",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -36,5 +37,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "^2.1.2"
   }
 }
