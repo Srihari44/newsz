@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import NavBar from "./Components/Navbar";
 import DataLoader from "./CoreComponents/DataLoader";
@@ -7,30 +7,32 @@ import { Switch, Route } from "react-router-dom";
 import ScrollToTop from "./HOC/ScrollToTop";
 
 function App() {
+  useEffect(() => sessionStorage.clear(), []);
+
   axios.defaults.baseURL = "https://pure-castle-32510.herokuapp.com/";
 
   return (
     <ScrollToTop>
       <NavBar />
       <Switch>
-        <Route path="/" exact render={() => <DataLoader category="" />} />
+        <Route path="/" exact component={DataLoader} />
         <Route
           path="/business"
-          render={() => <DataLoader category="business" />}
+          render={() => <DataLoader category="Business" />}
         />
         <Route
           path="/entertainment"
-          render={() => <DataLoader category="entertainment" />}
+          render={() => <DataLoader category="Entertainment" />}
         />
-        <Route path="/health" render={() => <DataLoader category="health" />} />
+        <Route path="/health" render={() => <DataLoader category="Health" />} />
         <Route
           path="/science"
-          render={() => <DataLoader category="science" />}
+          render={() => <DataLoader category="Science" />}
         />
-        <Route path="/sports" render={() => <DataLoader category="sports" />} />
+        <Route path="/sports" render={() => <DataLoader category="Sports" />} />
         <Route
           path="/technology"
-          render={() => <DataLoader category="technology" />}
+          render={() => <DataLoader category="Technology" />}
         />
         <Route path="/fullpost/:title" component={FullData} />
         <Route path="/search/:query" component={DataLoader} />

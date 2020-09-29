@@ -6,41 +6,41 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 
 function Home(props) {
-  const [state, stateHandler] = useState({ data: null });
+  const [articles, articlesHandler] = useState(null);
+  const [title, titleHandler] = useState(null);
 
   useEffect(() => {
-    let getTitle = props.match.params.query
-      ? props.match.params.query
-      : props.category;
-    let articleData = sessionStorage.getItem(getTitle);
-    if (!articleData) {
-      const getUrl = props.match.params.query
-        ? `search/${getTitle}`
-        : props.category;
-      axios.get(getUrl).then((res) => {
-        stateHandler({ data: res.data.articles });
-        sessionStorage.setItem(getTitle, JSON.stringify(res.data.articles));
-      });
+    let [categoryStr, queryStr] = [props.category, props.match.params.query];
+    let [sessionTitle, getUrl] = ["Headlines", ""];
+
+    if (categoryStr) {
+      [sessionTitle, getUrl] = [categoryStr, categoryStr.toLowerCase()];
+      titleHandler(categoryStr);
+    } else if (queryStr) {
+      [sessionTitle, getUrl] = [queryStr, `search/${queryStr}`];
+      titleHandler(`Search results for ${queryStr}`);
     } else {
-      stateHandler({ data: JSON.parse(articleData) });
+      titleHandler("Your Top-headlines");
     }
 
-    return () => stateHandler({ data: null });
-  }, [props.category, props.match.params.query]);
+    const sessionData = sessionStorage.getItem(sessionTitle);
+    if (sessionData) {
+      articlesHandler(JSON.parse(sessionData));
+    } else {
+      axios.get(getUrl).then((res) => {
+        articlesHandler(res.data.articles);
+        sessionStorage.setItem(sessionTitle, JSON.stringify(res.data.articles));
+      });
+    }
 
-  let title = "Your Top-headlines";
-  if (props.match.params.query) {
-    title = `Search results for ${props.match.params.query}`;
-  }
-  if (props.category && props.category.length > 0) {
-    title = props.category.charAt(0).toUpperCase() + props.category.slice(1);
-  }
+    return () => articlesHandler(null);
+  }, [props.category, props.match.params.query]);
 
   return (
     <div className="px-4">
       {props.location.pathname === "/" ? <Header /> : null}
       <h2 className="label">{title}</h2>
-      {!state.data ? <Loader /> : <DataContainer data={state.data} />}
+      {articles ? <DataContainer data={articles} /> : <Loader />}
     </div>
   );
 }
