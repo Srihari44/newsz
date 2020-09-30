@@ -7,25 +7,39 @@ function Fulldata(props) {
   const [index, indexHandler] = useState(props.location.state.itemIdx);
 
   let article = totalData[index];
-  let validContent = article.content || article.description || "";
-  if (article.content && article.description) {
-    validContent =
-      article.description.length > article.content.length
-        ? article.description
-        : article.content;
-  }
+
+  let validContent = (content, description) => {
+    let tempContent = content || description || "";
+    if (content && description) {
+      tempContent = description.length > content.length ? description : content;
+    }
+    return tempContent.split("[+")[0];
+  };
+
+  let validDateTime = (dateStr) => {
+    let date = new Date(dateStr).toString();
+    let timeStr = date.split(" ")[4].slice(0, 5);
+    let H = timeStr.slice(0, 2);
+    let h = H % 12 || 12;
+    h = h < 10 ? "0" + h : h;
+    let ampm = H < 12 || H === 24 ? "AM" : "PM";
+    let timeVal = `${h}:${timeStr.slice(3, 5)} ${ampm}`;
+    let dateVal = dateStr.slice(0, 10).split("-").reverse().join("/");
+    return timeVal + ", " + dateVal;
+  };
+
+  let validImgUrl = (imgurl) => {
+    return imgurl.indexOf("http://") !== -1
+      ? imgurl.replace("http://", "https://")
+      : imgurl;
+  };
 
   let validadedArticle = {
     ...article,
     title: article.title.split(" - ")[0],
-    content: validContent.split("[+")[0],
-    publishedAt: article.publishedAt
-      .slice(0, 10)
-      .split("-")
-      .reverse()
-      .join("-"),
-    urlToImage:
-      article.urlToImage || "https://newsapi.org/images/n-logo-border.png",
+    content: validContent(article.content, article.description),
+    publishedAt: validDateTime(article.publishedAt),
+    urlToImage: validImgUrl(article.urlToImage),
     prevArticle: totalData[index - 1],
     nextArticle: totalData[index + 1],
   };
@@ -73,7 +87,7 @@ function Fulldata(props) {
         {validadedArticle.nextArticle ? (
           <button
             id="btn-nav"
-            className="btn btn-nav"
+            className="btn"
             onClick={() => indexHandler(index + 1)}
           >
             Next article
