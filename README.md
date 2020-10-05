@@ -8,8 +8,6 @@ Modern news app powered by React and News API.
 
 ### Development
 
-[![Run on Repl.it](https://repl.it/badge/github/Srihari44/newsz)](https://repl.it/github/Srihari44/newsz)
-
 ### `yarn start`
 
 Runs the app in the development mode.

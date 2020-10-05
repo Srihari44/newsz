@@ -40,11 +40,11 @@ function App() {
       <hr />
       <footer className="text-center sticky-bottom my-3">
         <p className="lead">
-          Powered by, <a href="https://newsapi.org/">News API</a>
+          Contribute at <a href="https://github.com/Srihari44/newsz">GitHub</a>
         </p>
         <p className="lead">
           Made with{" "}
-          <span role="img" aria-label="love">
+          <span role="img" aria-label="emoji-love">
             💙
           </span>{" "}
           by, <a href="https://vsrihari.co/">V. Sri hari</a>
