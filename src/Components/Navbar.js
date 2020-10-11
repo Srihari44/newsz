@@ -4,7 +4,6 @@ import { withRouter, NavLink } from "react-router-dom";
 
 const MyNavbar = (props) => {
   const [input, inputHandler] = useState("");
-
   return (
     <Navbar bg="nav" variant="dark" sticky="top" expand="lg" className="mb-3">
       <NavLink className="navbar-brand" to="/" exact>
@@ -36,7 +35,8 @@ const MyNavbar = (props) => {
           inline
           onSubmit={(e) => {
             e.preventDefault();
-            props.history.push(`/search/${input}`);
+            inputHandler("");
+            props.history.push(`/search/${encodeURIComponent(input)}`);
           }}
         >
           <FormControl
@@ -44,6 +44,7 @@ const MyNavbar = (props) => {
             type="text"
             placeholder="Search"
             className="mr-sm-2"
+            value={input}
             onChange={(e) => inputHandler(e.target.value)}
           />
           <Button type="submit" className="my-2 my-sm-0">

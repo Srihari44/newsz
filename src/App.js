@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import NavBar from "./Components/Navbar";
-import DataLoader from "./CoreComponents/DataLoader";
-import FullData from "./CoreComponents/FullData";
+import DataLoader from "./Core/DataLoader";
+import FullData from "./Core/FullData";
+import Footer from "./Components/Footer";
+import Error from "./Components/Error";
 import { Switch, Route } from "react-router-dom";
-import ScrollToTop from "./HOC/ScrollToTop";
 
 function App() {
   useEffect(() => sessionStorage.clear(), []);
@@ -12,7 +13,7 @@ function App() {
   axios.defaults.baseURL = "https://pure-castle-32510.herokuapp.com/";
 
   return (
-    <ScrollToTop>
+    <React.Fragment>
       <NavBar />
       <Switch>
         <Route path="/" exact component={DataLoader} />
@@ -36,21 +37,11 @@ function App() {
         />
         <Route path="/fullpost/:title" component={FullData} />
         <Route path="/search/:query" component={DataLoader} />
+        <Route render={() => <Error type="404" />} />
       </Switch>
       <hr />
-      <footer className="text-center sticky-bottom my-3">
-        <p className="lead">
-          Contribute at <a href="https://github.com/Srihari44/newsz">GitHub</a>
-        </p>
-        <p className="lead">
-          Made with{" "}
-          <span role="img" aria-label="emoji-love">
-            💙
-          </span>{" "}
-          by, <a href="https://vsrihari.co/">V. Sri hari</a>
-        </p>
-      </footer>
-    </ScrollToTop>
+      <Footer />
+    </React.Fragment>
   );
 }
 

@@ -33,8 +33,7 @@ body {
   color: #cae8d5 !important;
 }
 
-.btn:hover,
-#btn-nav:hover {
+.btn:hover {
   background-color: #cae8d5 !important;
   color: #204051 !important;
   outline: #84a9ac;
@@ -54,12 +53,10 @@ body {
   align-self: stretch;
   background-color: #cae8d5 !important;
   color: #204051 !important;
-}
-
-.card .btn:hover,
-.fullpost .btn:hover {
-  background-color: #204051 !important;
-  color: #cae8d5 !important;
+  &:hover {
+    background-color: #204051 !important;
+    color: #cae8d5 !important;
+  }
 }
 
 .active {
@@ -76,11 +73,11 @@ body {
   font-size: 1.25rem;
 }
 footer {
-  transition: all ease 0.2s;
   p > a {
     display: inline-block;
     padding-left: 2px;
     color: white;
+    transition: ease 0.2s;
     &:hover {
       color: white;
       text-decoration: none;
