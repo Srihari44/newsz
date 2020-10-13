@@ -5,6 +5,7 @@ $theme-colors: (
   "nav": rgba(32, 64, 81, 0.98),
   "overlay": #3b6978ab,
 );
+
 $grid-breakpoints: (
   xs: 0,
   sm: 540px,
@@ -78,18 +79,25 @@ footer {
     padding-left: 2px;
     color: white;
     transition: ease 0.2s;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0);
     &:hover {
       color: white;
-      text-decoration: none;
       transform: translateX(4px);
       border-bottom: 1px dashed;
+      text-decoration: none;
     }
   }
 }
 hr {
   color: white;
 }
-
+@media (hover: hover) {
+  #btn-nav:hover:hover {
+    background-color: #cae8d5 !important;
+    color: #204051 !important;
+    outline: #84a9ac;
+  }
+}
 @import url("https://fonts.googleapis.com/css2?family=Jost&family=Roboto:wght@200;400;500&display=swap");
 
 @import "~bootstrap/scss/bootstrap.scss";

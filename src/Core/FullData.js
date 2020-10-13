@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import moment from "moment";
-import { Slide } from "react-reveal";
+import { Fade } from "react-reveal";
+import { ChevronLeft, ChevronRight } from "react-bootstrap-icons";
 
 function Fulldata(props) {
   const totalData = props.location.state.totalData;
@@ -17,7 +18,7 @@ function Fulldata(props) {
   let validContent = (content, description) => {
     let tempContent = content || description || "";
     if (content && description) {
-      tempContent = description.length > content.length ? description : content;
+      tempContent = content.length > description.length ? content : description;
     }
     return tempContent.split("[+")[0];
   };
@@ -32,10 +33,9 @@ function Fulldata(props) {
   let validImgUrl = (imgUrl) => {
     let validImgUrlStr = "/logo.png";
     if (imgUrl) {
-      validImgUrlStr =
-        imgUrl.indexOf("http://") !== -1
-          ? imgUrl.replace("http://", "https://")
-          : imgUrl;
+      validImgUrlStr = imgUrl.includes("http://")
+        ? imgUrl.replace("http://", "https://")
+        : imgUrl;
     }
     return validImgUrlStr;
   };
@@ -46,32 +46,32 @@ function Fulldata(props) {
     content: validContent(article.content, article.description),
     publishedAt: validDateTime(article.publishedAt),
     urlToImage: validImgUrl(article.urlToImage),
+    author: article.author ? article.author : article.source.name,
     prevArticle: totalData[index - 1],
     nextArticle: totalData[index + 1],
   };
 
   return (
-    <Slide left>
-      <div className="fullpost px-4">
+    <Fade>
+      <div className="fullpost mx-4">
         <h3 style={{ fontSize: "2em", fontWeight: "200" }}>
           {validadedArticle.title}
         </h3>
         <p>{validadedArticle.publishedAt}</p>
-        <Row sm={1} md={2}>
-          <Col sm={4}>
+        <Row xs={1} sm={2}>
+          <Col md={5}>
             <img
               className="rounded w-100"
+              onError={(e) => (e.target.src = "/logo.png")}
               style={{ height: "225px" }}
               src={validadedArticle.urlToImage}
               alt={validadedArticle.title}
             />
-            {validadedArticle.author ? (
-              <p className="mt-2">{validadedArticle.author}</p>
-            ) : null}
+            <p className="mt-2">{validadedArticle.author}</p>
           </Col>
-          <Col>
+          <Col md={7}>
             <div>
-              <p style={{ fontSize: "1.125em" }} className="mb-2 text-justify">
+              <p style={{ fontSize: "1.125em" }} className="mb-2 pr-sm-4 text-justify">
                 {validadedArticle.content}
               </p>
               <a
@@ -89,9 +89,11 @@ function Fulldata(props) {
               id="btn-nav"
               className="btn"
               onMouseDown={(e) => e.preventDefault()}
-              onClick={() => indexHandler(index - 1)}
+              onClick={(e) => {
+                indexHandler(index - 1)}
+              }
             >
-              Previous article
+              <ChevronLeft /> Previous
             </button>
           ) : (
             <button className="btn" style={{ visibility: "hidden" }}></button>
@@ -101,16 +103,18 @@ function Fulldata(props) {
               id="btn-nav"
               className="btn"
               onMouseDown={(e) => e.preventDefault()}
-              onClick={() => indexHandler(index + 1)}
+              onClick={(e) => {
+                indexHandler(index + 1)}
+              }
             >
-              Next article
+              Next <ChevronRight />
             </button>
           ) : (
             <button className="btn" style={{ visibility: "hidden" }}></button>
           )}
         </div>
       </div>
-    </Slide>
+    </Fade>
   );
 }
 

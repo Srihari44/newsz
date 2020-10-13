@@ -20,13 +20,14 @@ function Home(props) {
       titleHandler(categoryStr);
     } else if (queryStr) {
       [sessionTitle, getUrl] = [queryStr, `search/${queryStr}`];
-      titleHandler(`Search results for ${queryStr}`);
+      titleHandler(`Search results for ${decodeURIComponent(queryStr)}`);
     } else {
       titleHandler("Your Top-headlines");
     }
 
     const sessionData = sessionStorage.getItem(sessionTitle);
     if (sessionData) {
+      errorHandler(false);
       articlesHandler(JSON.parse(sessionData));
     } else {
       axios
@@ -45,19 +46,25 @@ function Home(props) {
     return () => articlesHandler(null);
   }, [props.category, props.match.params.query]);
 
+  let RenderArticles = () => {
+    if (!articles) {
+      return <Loader />;
+    } else {
+      return articles.length !== 0 ? (
+        <DataContainer data={articles} />
+      ) : (
+        <Error type="No results" />
+      );
+    }
+  };
+
   return (
     <div className="px-4">
       {!error ? (
         <React.Fragment>
           {props.location.pathname === "/" ? <Header /> : null}
           <h2 className="label">{title}</h2>
-          {!articles ? <Loader /> : null}
-          {articles && articles.length !== 0 ? (
-            <DataContainer data={articles} />
-          ) : null}
-          {articles && articles.length === 0 ? (
-            <Error type="No results" />
-          ) : null}
+          <RenderArticles />
         </React.Fragment>
       ) : (
         <Error type={error} />
