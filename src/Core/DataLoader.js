@@ -9,7 +9,7 @@ import { withRouter } from "react-router-dom";
 function Home(props) {
   const [articles, articlesHandler] = useState(null);
   const [title, titleHandler] = useState(null);
-  const [error, errorHandler] = useState(null);
+  const [error, errorHandler] = useState(false);
 
   useEffect(() => {
     let [categoryStr, queryStr] = [props.category, props.match.params.query];
@@ -27,13 +27,11 @@ function Home(props) {
 
     const sessionData = sessionStorage.getItem(sessionTitle);
     if (sessionData) {
-      errorHandler(false);
       articlesHandler(JSON.parse(sessionData));
     } else {
       axios
         .get(getUrl)
         .then((res) => {
-          errorHandler(false);
           articlesHandler(res.data.articles);
           sessionStorage.setItem(
             sessionTitle,
